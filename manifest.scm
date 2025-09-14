@@ -114,8 +114,10 @@
           zeromq
           boost-1.86))
    (arguments
-    `(#:configure-flags '("--enable-logging")
-                        #:test-target "check"))
+    (list
+     #:configure-flags
+      #~(list
+         (string-append "--with-boost=" (assoc-ref %build-inputs "boost")))))
    (synopsis "Local dev build of libbitcoin-system")
    (description "Dev version of libbitcoin-system built from local source.")
    (home-page "https://github.com/libbitcoin/libbitcoin-system")
