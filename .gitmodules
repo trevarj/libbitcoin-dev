@@ -1,0 +1,24 @@
+[submodule "libbitcoin-blockchain"]
+	path = libbitcoin-blockchain
+	url = ./libbitcoin-blockchain
+[submodule "libbitcoin-consensus"]
+	path = libbitcoin-consensus
+	url = ./libbitcoin-consensus
+[submodule "libbitcoin-database"]
+	path = libbitcoin-database
+	url = ./libbitcoin-database
+[submodule "libbitcoin-network"]
+	path = libbitcoin-network
+	url = ./libbitcoin-network
+[submodule "libbitcoin-node"]
+	path = libbitcoin-node
+	url = ./libbitcoin-node
+[submodule "libbitcoin-protocol"]
+	path = libbitcoin-protocol
+	url = ./libbitcoin-protocol
+[submodule "libbitcoin-server"]
+	path = libbitcoin-server
+	url = ./libbitcoin-server
+[submodule "libbitcoin-system"]
+	path = libbitcoin-system
+	url = ./libbitcoin-system
