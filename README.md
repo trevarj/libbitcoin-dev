@@ -8,6 +8,13 @@ hacking on the project.
 - Provide a simple (if you can consider Guix simple), reproducible build for a
   libbitcoin-node or libbitcoin-server
 
+## First Checkout
+
+Pulling all submodules:
+```sh
+git submodule update --init --recursive
+```
+
 ## Building a package
 ```sh
 guix shell -L guix libbitcoin-node
@@ -22,4 +29,9 @@ guix shell -m manifest.scm
 ```sh
 guix shell -L guix libbitcoin-node
 bn
+```
+
+## Updating all submodules to head
+```sh
+git submodule update --recursive --remote
 ```
