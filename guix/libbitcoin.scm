@@ -133,10 +133,127 @@
     (inputs (list boost-1.86 zeromq libbitcoin-system))
     (arguments
      (list
+      #:tests? #f
       #:configure-flags
       #~(list
          (string-append "--with-boost=" (assoc-ref %build-inputs "boost")))))
     (synopsis "Local dev build of libbitcoin-protocol")
     (description "Dev version of libbitcoin-protocol built from local source.")
     (home-page "https://github.com/libbitcoin/libbitcoin-protocol")
+    (license agpl3)))
+
+(define-public libbitcoin-network
+  (package
+    (name "libbitcoin-network")
+    (version "4.0.0")
+    (source (local-file "./libbitcoin-network" #:recursive? #t))
+    (build-system gnu-build-system)
+    (native-inputs (list pkg-config automake autoconf libtool))
+    (inputs (list boost-1.86 libbitcoin-system))
+    (arguments
+     (list
+      #:tests? #f
+      #:configure-flags
+      #~(list
+         (string-append "--with-boost=" (assoc-ref %build-inputs "boost")))))
+    (synopsis "Local dev build of libbitcoin-network")
+    (description "Dev version of libbitcoin-network built from local source.")
+    (home-page "https://github.com/libbitcoin/libbitcoin-network")
+    (license agpl3)))
+
+(define-public libbitcoin-database
+  (package
+    (name "libbitcoin-database")
+    (version "4.0.0")
+    (source (local-file "./libbitcoin-database" #:recursive? #t))
+    (build-system gnu-build-system)
+    (native-inputs (list pkg-config automake autoconf libtool))
+    (propagated-inputs (list boost-1.86 libbitcoin-system))
+    (arguments
+     (list
+      #:tests? #f
+      #:configure-flags
+      #~(list
+         (string-append "--with-boost=" (assoc-ref %build-inputs "boost")))))
+    (synopsis "Local dev build of libbitcoin-database")
+    (description "Dev version of libbitcoin-database built from local source.")
+    (home-page "https://github.com/libbitcoin/libbitcoin-database")
+    (license agpl3)))
+
+(define-public libbitcoin-consensus
+  (package
+    (name "libbitcoin-consensus")
+    (version "4.0.0")
+    (source (local-file "./libbitcoin-consensus" #:recursive? #t))
+    (build-system gnu-build-system)
+    (native-inputs (list pkg-config automake autoconf libtool))
+    (inputs (list libsecp256k1-0.7.0 boost-1.86))
+    (arguments
+     (list
+      #:tests? #f
+      #:configure-flags
+      #~(list
+         (string-append "--with-boost=" (assoc-ref %build-inputs "boost")))))
+    (synopsis "Local dev build of libbitcoin-consensus")
+    (description "Dev version of libbitcoin-consensus built from local source.")
+    (home-page "https://github.com/libbitcoin/libbitcoin-consensus")
+    (license agpl3)))
+
+(define-public libbitcoin-blockchain
+  (package
+    (name "libbitcoin-blockchain")
+    (version "4.0.0")
+    (source (local-file "./libbitcoin-blockchain" #:recursive? #t))
+    (build-system gnu-build-system)
+    (native-inputs (list pkg-config automake autoconf libtool))
+    (inputs (list libbitcoin-consensus boost-1.86))
+    (propagated-inputs (list libbitcoin-database))
+    (arguments
+     (list
+      #:tests? #f
+      #:configure-flags
+      #~(list
+         (string-append "--with-boost=" (assoc-ref %build-inputs "boost")))))
+    (synopsis "Local dev build of libbitcoin-blockchain")
+    (description "Dev version of libbitcoin-blockchain built from local source.")
+    (home-page "https://github.com/libbitcoin/libbitcoin-blockchain")
+    (license agpl3)))
+
+(define-public libbitcoin-node
+  (package
+    (name "libbitcoin-node")
+    (version "4.0.0")
+    (source (local-file "./libbitcoin-node" #:recursive? #t))
+    (build-system gnu-build-system)
+    (native-inputs (list pkg-config automake autoconf libtool))
+    (inputs (list libbitcoin-blockchain libbitcoin-network boost-1.86))
+    (propagated-inputs (list libbitcoin-database libbitcoin-network))
+    (arguments
+     (list
+      #:tests? #f
+      #:configure-flags
+      #~(list
+         (string-append "--with-boost=" (assoc-ref %build-inputs "boost")))))
+    (synopsis "Local dev build of libbitcoin-node")
+    (description "Dev version of libbitcoin-node built from local source.")
+    (home-page "https://github.com/libbitcoin/libbitcoin-node")
+    (license agpl3)))
+
+(define-public libbitcoin-server
+  (package
+    (name "libbitcoin-server")
+    (version "4.0.0")
+    (source (local-file "./libbitcoin-server" #:recursive? #t))
+    (build-system gnu-build-system)
+    (native-inputs (list pkg-config automake autoconf libtool))
+    (inputs (list libbitcoin-node libbitcoin-protocol boost-1.86))
+    (arguments
+     (list
+      #:tests? #f
+      #:configure-flags
+      #~(list
+         (string-append "--with-boost=" (assoc-ref %build-inputs "boost")))))
+    (synopsis "Local dev build of libbitcoin-server")
+    (description "Dev version of libbitcoin-server built from local source.")
+    (home-page "https://github.com/libbitcoin/libbitcoin-server")
     (license agpl3)))
